@@ -33,8 +33,10 @@ module rom_reader #
 )
 (
     input wire clk,                                     // clock, we should select source in top level : auto or manual via pushing a button
+	 input wire increment_address,
+	 input wire decrement_address,
     input wire reset_n,
-	 input wire [DATA_WIDTH-1:0] data_line_in,           // data line from chip
+	 input wire [DATA_WIDTH-1:0] data_line_in,           // data line from chip, pass through
 	 output wire [3:0] operation,                        // operation read or write (see datasheets in docs)
 	 output wire [ADDRESS_WIDTH-1:0] address_line,
 	 output wire [DATA_WIDTH-1:0] data_line
@@ -42,10 +44,12 @@ module rom_reader #
 
 reg [ADDRESS_WIDTH-1:0] address_counter;
 reg [3:0] operation_code;
-
+reg [DATA_WIDTH-1:0] data_line_value;
+reg state;
 
 assign address_line = address_counter;
 assign operation = operation_code;
+assign data_line = data_line_value;
 
 always @(posedge clk)
 begin
@@ -53,11 +57,17 @@ begin
 	 begin
 	     address_counter <= 0;
 		  operation_code <= 4'b1100;   // universal solution for both chips (IP3604 and 3601)
+		  state <= 0;
 	 end
 	 else
 	 begin
-	     address_counter <= address_line + 1;
+	     //address_counter <= address_line + 1;
+		  //data_line_value <= data_line_in;
+		  state <= 1;
 	 end
 end
 
+always @(posedge increment_address or posedge decrement_address)
+begin
+end
 endmodule
