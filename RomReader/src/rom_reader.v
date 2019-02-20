@@ -5,6 +5,7 @@
 `define IP3601_DATA_WIDTH 4
 `define IP3604_ADDR_WIDTH 9
 `define IP3601_ADDR_WIDTH 8
+`define IP3604_MAX_COUNT 512
 //////////////////////////////////////////////////////////////////////////////////
 // Company:  MossbauerLab
 // Engineer: Ushakov M.V. (EvilLord666)
@@ -22,24 +23,24 @@
 //
 // Revision: 
 // Revision 1.0
-// Additional Comments: 
+// Additional Comments: reset_n shoul be pulsed like --___----------
 //
 //////////////////////////////////////////////////////////////////////////////////
 module rom_reader #
 (
     DATA_WIDTH = `IP3604_DATA_WIDTH,
-	 ADDRESS_WIDTH = 9,
-	 READING_CHIP = `IP3604
+     ADDRESS_WIDTH = 9,
+     READING_CHIP = `IP3604
 )
 (
     input wire clk,                                     // clock, we should select source in top level : auto or manual via pushing a button
-	 input wire increment_address,
-	 input wire decrement_address,
+     input wire increment_address,
+     input wire decrement_address,
     input wire reset_n,
-	 input wire [DATA_WIDTH-1:0] data_line_in,           // data line from chip, pass through
-	 output wire [3:0] operation,                        // operation read or write (see datasheets in docs)
-	 output wire [ADDRESS_WIDTH-1:0] address_line,
-	 output wire [DATA_WIDTH-1:0] data_line
+     input wire [DATA_WIDTH-1:0] data_line_in,           // data line from chip, pass through
+     output wire [3:0] operation,                        // operation read or write (see datasheets in docs)
+     output wire [ADDRESS_WIDTH-1:0] address_line,
+     output wire [DATA_WIDTH-1:0] data_line
 );
 
 reg [ADDRESS_WIDTH-1:0] address_counter;
@@ -54,20 +55,37 @@ assign data_line = data_line_value;
 always @(posedge clk)
 begin
     if (reset_n)
-	 begin
-	     address_counter <= 0;
-		  operation_code <= 4'b1100;   // universal solution for both chips (IP3604 and 3601)
-		  state <= 0;
-	 end
-	 else
-	 begin
-	     //address_counter <= address_line + 1;
-		  //data_line_value <= data_line_in;
-		  state <= 1;
-	 end
+     begin
+          operation_code <= 4'b1100;           // universal solution for both chips (IP3604 and 3601)
+          state <= 0;
+     end
+     else
+     begin
+          data_line_value <= data_line_in;
+          state <= 1;
+     end
 end
 
-always @(posedge increment_address or posedge decrement_address)
+always @(negedge state or posedge increment_address or posedge decrement_address)
 begin
+    if(!state)
+     begin
+     end
+     else
+     begin
+        if (increment_address)
+         begin
+             address_counter = address_counter + 1;
+              if (address_counter == 512)
+                  address_counter = 0;
+         end
+         if (decrement_address)
+         begin
+             if (address_counter == 0)
+                 address_counter = address_counter - 1;      
+         end
+         address_line = address_counter;
+     end
 end
+
 endmodule
