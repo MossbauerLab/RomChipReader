@@ -28,15 +28,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 module rom_reader #
 (
-    DATA_WIDTH = `IP3604_DATA_WIDTH,
-     ADDRESS_WIDTH = 9,
-     READING_CHIP = `IP3604
+     DATA_WIDTH = `IP3604_DATA_WIDTH,
+     ADDRESS_WIDTH = `IP3604_ADDR_WIDTH
+     // SELECTED_CHIP = `IP3604
 )
 (
-    input wire clk,                                     // clock, we should select source in top level : auto or manual via pushing a button
+     input wire clk,                                     // clock, we should select source in top level : auto or manual via pushing a button
      input wire increment_address,
      input wire decrement_address,
-    input wire reset_n,
+     input wire reset_n,
      input wire [DATA_WIDTH-1:0] data_line_in,           // data line from chip, pass through
      output wire [3:0] operation,                        // operation read or write (see datasheets in docs)
      output wire [ADDRESS_WIDTH-1:0] address_line,
