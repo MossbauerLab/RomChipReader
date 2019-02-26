@@ -61,15 +61,16 @@ module rom_reader_3601_testbench;
 		clk = 0;
 		increment_address = 0;
 		decrement_address = 0;
-		reset_n = 1;
+		reset_n = 0;
 		data_line_in = 0;
+		counter = 0;
 
 		// Wait 200 ns for pulse reset
 		#200;
-      reset_n = 0;
+      reset_n = 1;
 		// Add stimulus here
       #200;
-		reset_n = 1;
+		reset_n = 0;
 	end
 	
 	always
@@ -78,7 +79,7 @@ module rom_reader_3601_testbench;
 		 counter <= counter + 1;
 		 if(counter == 6)
 		 begin
-		     data_line_in <= 11;
+		     data_line_in <= 1;
 			  increment_address <= 1;
 		 end
 		 if(counter == 7)
@@ -87,28 +88,28 @@ module rom_reader_3601_testbench;
 	    end
 		 if(counter == 10)
 		 begin
-		     data_line_in <= 22;
+		     data_line_in <= 2;
 			  increment_address <= 1;
 		 end
-		 if(counter == 14)
+		 if(counter == 11)
 		 begin
 		     increment_address <= 0;
 	    end
 		 if(counter == 15)
 		 begin
-		     data_line_in <= 33;
+		     data_line_in <= 4;
 			  increment_address <= 1;
 		 end
-		 if(counter == 19)
+		 if(counter == 16)
 		 begin
 		     increment_address <= 0;
 	    end
 		 if(counter == 20)
 		 begin
-		     data_line_in <= 44;
+		     data_line_in <= 8;
 			  increment_address <= 1;
 		 end
-		 if(counter == 24)
+		 if(counter == 21)
 		 begin
 		     counter <= 0;
 			  data_line_in <= 0;

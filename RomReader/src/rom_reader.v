@@ -66,7 +66,7 @@ begin
      end
 end
 
-always @(negedge state or posedge increment_address or posedge decrement_address)
+always @(state or increment_address or decrement_address)
 begin
     if(!state)
     begin
@@ -74,13 +74,13 @@ begin
     end
     else
     begin
-        if (increment_address)
+         if (increment_address && !decrement_address)
          begin
              address_counter = address_counter + 1;
-              if (address_counter == 512)
-                  address_counter = 0;
+             if (address_counter == 512)
+                 address_counter = 0;
          end
-         if (decrement_address)
+         if (decrement_address && !increment_address)
          begin
              if (address_counter == 0)
                  address_counter = address_counter - 1;      
