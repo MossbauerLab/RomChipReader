@@ -29,7 +29,7 @@ module rom_reader_3601_testbench;
 	reg increment_address;
 	reg decrement_address;
 	reg reset_n;
-	reg [0:0] data_line_in;
+	reg [3:0] data_line_in;
 
    reg [9:0] counter;
 
@@ -76,6 +76,19 @@ module rom_reader_3601_testbench;
 	begin
 	    #100 clk <= ~clk;
 		 counter <= counter + 1;
+		 if(counter == 6)
+		     data_line_in <= 11;
+		 if(counter == 7)
+		     data_line_in <= 22;
+		 if(counter == 8)
+		     data_line_in <= 33;
+		 if(counter == 8)
+		     data_line_in <= 44;
+		 if(counter == 10)
+		 begin
+		     counter <= 0;
+			  data_line_in <= 0;
+		 end
 	end
       
 endmodule

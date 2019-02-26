@@ -84,7 +84,6 @@ begin
              if (address_counter == 0)
                  address_counter = address_counter - 1;      
          end
-         address_line = address_counter;
      end
 end
 
