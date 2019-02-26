@@ -69,10 +69,11 @@ end
 always @(negedge state or posedge increment_address or posedge decrement_address)
 begin
     if(!state)
-     begin
-     end
-     else
-     begin
+    begin
+	     address_counter = 0;
+    end
+    else
+    begin
         if (increment_address)
          begin
              address_counter = address_counter + 1;

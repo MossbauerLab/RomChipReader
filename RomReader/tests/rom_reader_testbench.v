@@ -35,8 +35,8 @@ module rom_reader_3601_testbench;
 
 	// Outputs
 	wire [3:0] operation;
-	wire [0:0] address_line;
-	wire [0:0] data_line;
+	wire [7:0] address_line;
+	wire [3:0] data_line;
 
 	// Instantiate the Unit Under Test (UUT) for testing 3601 (556PT4) chip
 	rom_reader #
@@ -77,17 +77,42 @@ module rom_reader_3601_testbench;
 	    #100 clk <= ~clk;
 		 counter <= counter + 1;
 		 if(counter == 6)
+		 begin
 		     data_line_in <= 11;
+			  increment_address <= 1;
+		 end
 		 if(counter == 7)
-		     data_line_in <= 22;
-		 if(counter == 8)
-		     data_line_in <= 33;
-		 if(counter == 8)
-		     data_line_in <= 44;
+		 begin
+		     increment_address <= 0;
+	    end
 		 if(counter == 10)
+		 begin
+		     data_line_in <= 22;
+			  increment_address <= 1;
+		 end
+		 if(counter == 14)
+		 begin
+		     increment_address <= 0;
+	    end
+		 if(counter == 15)
+		 begin
+		     data_line_in <= 33;
+			  increment_address <= 1;
+		 end
+		 if(counter == 19)
+		 begin
+		     increment_address <= 0;
+	    end
+		 if(counter == 20)
+		 begin
+		     data_line_in <= 44;
+			  increment_address <= 1;
+		 end
+		 if(counter == 24)
 		 begin
 		     counter <= 0;
 			  data_line_in <= 0;
+			  increment_address <= 0;
 		 end
 	end
       
