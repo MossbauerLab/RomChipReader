@@ -5,7 +5,6 @@
 `define IP3601_DATA_WIDTH 4
 `define IP3604_ADDR_WIDTH 9
 `define IP3601_ADDR_WIDTH 8
-`define IP3604_MAX_COUNT 512
 //////////////////////////////////////////////////////////////////////////////////
 // Company:  MossbauerLab
 // Engineer: Ushakov M.V. (EvilLord666)
@@ -30,7 +29,6 @@ module rom_reader #
 (
      DATA_WIDTH = `IP3604_DATA_WIDTH,
      ADDRESS_WIDTH = `IP3604_ADDR_WIDTH
-     // SELECTED_CHIP = `IP3604
 )
 (
      input wire clk,                                     // clock, we should select source in top level : auto or manual via pushing a button
@@ -47,6 +45,8 @@ reg [ADDRESS_WIDTH-1:0] address_counter;
 reg [3:0] operation_code;
 reg [DATA_WIDTH-1:0] data_line_value;
 reg state;
+
+localparam reg[31:0] MAX_ADDRESS = 2^`IP3604_ADDR_WIDTH - 1;
 
 assign address_line = address_counter;
 assign operation = operation_code;
@@ -78,7 +78,7 @@ begin
          if (increment_address && !decrement_address)
          begin
              address_counter = address_counter + 1;
-             if (address_counter == 512)
+             if (address_counter == MAX_ADDRESS + 1)
                  address_counter = 0;
          end
          if (decrement_address && !increment_address)
