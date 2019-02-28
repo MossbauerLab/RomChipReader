@@ -61,7 +61,7 @@ begin
      end
      else
      begin
-          data_line_value <= data_line_in;
+          
           state <= 1;
      end
 end
@@ -70,7 +70,8 @@ always @(state or increment_address or decrement_address)
 begin
     if(!state)
     begin
-	     address_counter = 0;
+         address_counter = 0;
+          data_line_value = 0;
     end
     else
     begin
@@ -86,6 +87,7 @@ begin
                  address_counter = address_counter - 1;      
          end
      end
+      data_line_value = data_line_in;
 end
 
 endmodule
