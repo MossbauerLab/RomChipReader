@@ -22,32 +22,32 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module rom_reader_3601_testbench;
+module rom_reader_3604_testbench;
 
     // Inputs
     reg clk;
     reg increment_address;
     reg decrement_address;
     reg reset_n;
-    reg [3:0] data_line_in;
+    reg [7:0] data_line_in;
 
     reg [9:0] counter;
 
     // Outputs
     wire [3:0] operation;
-    wire [7:0] address_line;
-    wire [3:0] data_line;
+    wire [8:0] address_line;
+    wire [7:0] data_line;
      
-    localparam reg [3:0] A0 = 4'b1111;
-    localparam reg [3:0] A1 = 4'b1110;
-    localparam reg [3:0] A2 = 4'b1100;
-    localparam reg [3:0] A3 = 4'b1000;
+    localparam reg [7:0] A0 = 8'b11110000;
+    localparam reg [7:0] A1 = 8'b11100000;
+    localparam reg [7:0] A2 = 8'b11000000;
+    localparam reg [7:0] A3 = 8'b10000000;
 
     // Instantiate the Unit Under Test (UUT) for testing 3601 (556PT4) chip
     rom_reader #
     (
-        .DATA_WIDTH(4),
-        .ADDRESS_WIDTH(8)
+        .DATA_WIDTH(8),
+        .ADDRESS_WIDTH(9)
     )uut 
     (
         .clk(clk), 
@@ -118,7 +118,7 @@ module rom_reader_3601_testbench;
         begin
             increment_address <= 0;
         end
-        if(counter == 25)   // A + 1
+        if(counter == 25)
         begin
             data_line_in <= A2;
             increment_address <= 1;
@@ -127,7 +127,7 @@ module rom_reader_3601_testbench;
         begin
             increment_address <= 0;
         end
-        if(counter == 30)  // A + 1
+        if(counter == 30)
         begin
             data_line_in <= A3;
             increment_address <= 1;
