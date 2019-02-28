@@ -26,10 +26,11 @@
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rom_reader_3601_testbench_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="rom_reader_3601_testbench_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="rom_reader_3601_testbench_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rom_reader_3601_testbench_stx_beh.prj"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rom_reader_3604_testbench_beh.prj"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="rom_reader_3604_testbench_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="rom_reader_3604_testbench_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rom_reader_3604_testbench_stx_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
   </files>
@@ -42,62 +43,54 @@
     <transform xil_pn:end_ts="1551354756" xil_pn:in_ck="6636995015956621690" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1551354756">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="src/rom_reader.v"/>
-      <outfile xil_pn:name="tests/rom_reader_3601_testbench.v"/>
-      <outfile xil_pn:name="tests/rom_reader_3604_testbench.v"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
-    <transform xil_pn:end_ts="1551186419" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-1628750291601460545" xil_pn:start_ts="1551186418">
+    <transform xil_pn:end_ts="1551354759" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="7464649683791967490" xil_pn:start_ts="1551354759">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
-    <transform xil_pn:end_ts="1551186419" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="777351381403412605" xil_pn:start_ts="1551186419">
+    <transform xil_pn:end_ts="1551354759" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="5733799678611214528" xil_pn:start_ts="1551354759">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
     <transform xil_pn:end_ts="1551186419" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-2973996366553970082" xil_pn:start_ts="1551186419">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
-    <transform xil_pn:end_ts="1551353988" xil_pn:in_ck="654969032511602601" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1551353988">
+    <transform xil_pn:end_ts="1551354759" xil_pn:in_ck="6636995015956621690" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1551354759">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputAdded"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="src/rom_reader.v"/>
-      <outfile xil_pn:name="tests/rom_reader_3601_testbench.v"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
-    <transform xil_pn:end_ts="1551353990" xil_pn:in_ck="654969032511602601" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-8508383033781636867" xil_pn:start_ts="1551353988">
+    <transform xil_pn:end_ts="1551354761" xil_pn:in_ck="6636995015956621690" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="1183339558170800195" xil_pn:start_ts="1551354759">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
+    </transform>
+    <transform xil_pn:end_ts="1551354761" xil_pn:in_ck="-559008348354665903" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5315827453007181393" xil_pn:start_ts="1551354761">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="fuse.log"/>
-      <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="rom_reader_3601_testbench_beh.prj"/>
-      <outfile xil_pn:name="rom_reader_3601_testbench_isim_beh.exe"/>
-      <outfile xil_pn:name="xilinxsim.ini"/>
-    </transform>
-    <transform xil_pn:end_ts="1551353991" xil_pn:in_ck="-3689575897802716617" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-3120516932389270677" xil_pn:start_ts="1551353990">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="isim.cmd"/>
-      <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="rom_reader_3601_testbench_isim_beh.wdb"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
   </transforms>
 
