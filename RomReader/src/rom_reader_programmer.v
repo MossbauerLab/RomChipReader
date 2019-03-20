@@ -25,31 +25,43 @@ module rom_reader_programmer(
     input wire reset_button,                // NOT REAL RESET
     input wire clk,
     input wire [7:0] chip_data_port,
-    output wire [9:0] chip_address_port,
+    output wire [8:0] chip_address_port,
     output wire [3:0] chip_selection_port,
     output wire [7:0] data_output_led_port
     // todo: add 7seg port
 );
 
-//todo: make different resets ....
-wire[9:0] address_seven_seg;
+// todo: add localparams
+
+wire [7:0] ip3601_address_port;
+wire [3:0] ip3601_selection_port;
+wire [3:0] ip3601_output_led_port;
+
+wire [8:0] ip3604_address_port;
+wire [3:0] ip3604_selection_port;
+wire [7:0] ip3604_output_led_port;
+
+assign chip_address_port = selected_chip == 1 ? ip3604_address_port : ip3601_address_port;
+assign chip_selection_port = selected_chip == 1 ? ip3604_selection_port : ip3601_selection_port;
+assign data_output_led_port = selected_chip == 1 ? ip3604_output_led_port : ip3601_output_led_port;
+
 
 rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9)) 
     ip3604_reader(.clk(clk), .reset_n(reset_button), 
                   .increment_address(increment_address_button),
                   .decrement_address(decrement_address_button),
                   .data_line_in(chip_data_port),
-                  .operation(chip_selection_port),
-                  .address_line(address_seven_seg),
-                  .data_line(data_output_led_port));
+                  .operation(ip3604_selection_port),
+                  .address_line(ip3604_address_port),
+                  .data_line(ip3604_output_led_port));
 
 rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8)) 
     ip3601_reader(.clk(clk), .reset_n(reset_button), 
                   .increment_address(increment_address_button),
                   .decrement_address(decrement_address_button),
                   .data_line_in(chip_data_port),
-                  .operation(chip_selection_port),
-                  .address_line(address_seven_seg),
-                  .data_line(data_output_led_port));
+                  .operation(ip3601_selection_port),
+                  .address_line(ip3601_address_port),
+                  .data_line(ip3601_output_led_port));
 
 endmodule
