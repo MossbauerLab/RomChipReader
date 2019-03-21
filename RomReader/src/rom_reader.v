@@ -42,9 +42,9 @@ module rom_reader #
 );
 
 reg [ADDRESS_WIDTH:0] address_counter;
-reg [3:0] operation_code;
+(* keep = "true" *) reg [3:0] operation_code;
 reg [DATA_WIDTH-1:0] data_line_value;
-reg state;
+(* keep = "true" *) reg state;
 
 localparam reg[31:0] MAX_ADDRESS = 2^`IP3604_ADDR_WIDTH - 1;
 
@@ -61,9 +61,7 @@ begin
     end
     else
     begin
-        //operation_code <= 4'b1100;           // universal solution for both chips (IP3604 and 3601)
-		  operation_code[3] <= 1'b1;
-		  operation_code[2] <= 1'b1;
+        operation_code <= 4'b1100;           // universal solution for both chips (IP3604 and 3601)
         state <= 1;
     end
 end
@@ -77,16 +75,22 @@ begin
     end
     else
     begin
-        if (increment_address && !decrement_address)
+        if (increment_address)
         begin
-            address_counter = address_counter + 1;
-            if (address_counter == MAX_ADDRESS + 1)
-                address_counter = 0;
+		      if(!decrement_address)
+				begin
+                address_counter = address_counter + 1;
+                if (address_counter == MAX_ADDRESS + 1)
+                    address_counter = 0;
+				end
         end
-        else if (decrement_address && !increment_address)
+        if (decrement_address)
         begin
-            if (address_counter == 0)
-                address_counter = address_counter - 1;      
+		      if(!increment_address)
+				begin
+                if (address_counter == 0)
+                    address_counter = address_counter - 1;
+            end					 
         end
 		  //else address_counter = address_counter;
     end
