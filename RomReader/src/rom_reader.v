@@ -55,14 +55,17 @@ assign data_line = data_line_value;
 always @(posedge clk)
 begin
     if (reset_n)
-     begin
-          operation_code <= 4'b1100;           // universal solution for both chips (IP3604 and 3601)
-          state <= 0;
-     end
-     else
-     begin     
-          state <= 1;
-     end
+    begin
+        operation_code <= 4'b0000;           // universal solution for both chips (IP3604 and 3601)
+        state <= 0;
+    end
+    else
+    begin
+        //operation_code <= 4'b1100;           // universal solution for both chips (IP3604 and 3601)
+		  operation_code[3] <= 1'b1;
+		  operation_code[2] <= 1'b1;
+        state <= 1;
+    end
 end
 
 always @(state or increment_address or decrement_address or address_counter or data_line_in)
