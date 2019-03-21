@@ -41,14 +41,14 @@ module rom_reader #
      output wire [DATA_WIDTH-1:0] data_line
 );
 
-reg [ADDRESS_WIDTH-1:0] address_counter;
+reg [ADDRESS_WIDTH:0] address_counter;
 reg [3:0] operation_code;
 reg [DATA_WIDTH-1:0] data_line_value;
 reg state;
 
 localparam reg[31:0] MAX_ADDRESS = 2^`IP3604_ADDR_WIDTH - 1;
 
-assign address_line = address_counter;
+assign address_line[ADDRESS_WIDTH-1:0] = address_counter[ADDRESS_WIDTH-1:0];
 assign operation = operation_code;
 assign data_line = data_line_value;
 
@@ -60,34 +60,34 @@ begin
           state <= 0;
      end
      else
-     begin
-          
+     begin     
           state <= 1;
      end
 end
 
-always @(state or increment_address or decrement_address)
+always @(state or increment_address or decrement_address or address_counter or data_line_in)
 begin
     if(!state)
     begin
-         address_counter = 0;
-          data_line_value = 0;
+        address_counter = 0;
+        data_line_value = 0;
     end
     else
     begin
-         if (increment_address && !decrement_address)
-         begin
-             address_counter = address_counter + 1;
-             if (address_counter == MAX_ADDRESS + 1)
-                 address_counter = 0;
-         end
-         if (decrement_address && !increment_address)
-         begin
-             if (address_counter == 0)
-                 address_counter = address_counter - 1;      
-         end
-     end
-      data_line_value = data_line_in;
+        if (increment_address && !decrement_address)
+        begin
+            address_counter = address_counter + 1;
+            if (address_counter == MAX_ADDRESS + 1)
+                address_counter = 0;
+        end
+        else if (decrement_address && !increment_address)
+        begin
+            if (address_counter == 0)
+                address_counter = address_counter - 1;      
+        end
+		  //else address_counter = address_counter;
+    end
+    data_line_value = data_line_in;
 end
 
 endmodule

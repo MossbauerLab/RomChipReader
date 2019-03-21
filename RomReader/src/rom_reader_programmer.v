@@ -59,7 +59,7 @@ rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8))
     ip3601_reader(.clk(clk), .reset_n(reset_button), 
                   .increment_address(increment_address_button),
                   .decrement_address(decrement_address_button),
-                  .data_line_in(chip_data_port),
+                  .data_line_in(chip_data_port[3:0]),
                   .operation(ip3601_selection_port),
                   .address_line(ip3601_address_port),
                   .data_line(ip3601_output_led_port));
