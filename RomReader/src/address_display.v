@@ -32,14 +32,28 @@ module address_display(
 	 begin
 	     if (reset)
 		  begin
-		       counter <= 0;
+		      counter <= 0;
+				digits <=0;
 		  end
 		  else
-		      
+		      counter <= counter + 1;
+				if (counter == 8)
+				begin
+				    counter <= 0;
+					 //digit <= digit |( 1 << ;
+				end
+				//
 		  begin
 		  end
 	 end
 
-endmodule
+function automatic [7:0] get_digit_value;
+    input wire [1:0] digit;
+	 input wire [8:0] address_line;
+    case (digit):
+	     //2'b00
+		    //get_digit_value = address_line
+	 endcase
+endfunction
 
-// todo: umv: add function digit data selector
+endmodule
