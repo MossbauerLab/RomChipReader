@@ -66,6 +66,7 @@ begin
     end
 end
 
+// increment_address and decrement_address are events from keys (key press) 
 always @(state or increment_address or decrement_address or address_counter or data_line_in)
 begin
     if(!state)
@@ -88,11 +89,11 @@ begin
         begin
 		      if(!increment_address)
 				begin
+				    address_counter = address_counter - 1;
                 if (address_counter == 0)
-                    address_counter = address_counter - 1;
-            end					 
+                    address_counter = MAX_ADDRESS;
+            end			
         end
-		  //else address_counter = address_counter;
     end
     data_line_value = data_line_in;
 end
