@@ -64,6 +64,7 @@ begin
     begin
         operation_code <= 4'b0000;           // universal solution for both chips (IP3604 and 3601)
         state <= INITIAL_STATE;
+        address_counter <= 0;
     end
     else
     begin
