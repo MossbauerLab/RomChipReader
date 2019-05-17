@@ -120,36 +120,4 @@ begin
     end
 end
 
-// increment_address and decrement_address are events from keys (key press) 
-/*always @(state or increment_address or decrement_address or address_counter or data_line_in)
-begin
-    if(!state)
-    begin
-        address_counter = 0;
-        data_line_value = 0;
-    end
-    else
-    begin
-        if (increment_address)
-        begin
-              if(!decrement_address)
-                begin
-                address_counter = address_counter + 1;
-                if (address_counter == MAX_ADDRESS + 1)
-                    address_counter = 0;
-                end
-        end
-        if (decrement_address)
-        begin
-              if(!increment_address)
-                begin
-                    address_counter = address_counter - 1;
-                if (address_counter == 0)
-                    address_counter = MAX_ADDRESS;
-            end            
-        end
-    end
-    data_line_value = data_line_in;
-end*/
-
 endmodule
