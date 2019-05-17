@@ -63,12 +63,26 @@ begin
     if (reset_n)
     begin
         operation_code <= 4'b0000;           // universal solution for both chips (IP3604 and 3601)
-        state <= 0;
+        state <= INITIAL_STATE;
     end
     else
     begin
         operation_code <= 4'b1100;           // universal solution for both chips (IP3604 and 3601)
-        state <= 1;
+        case (state):
+		      INITIAL_CASE:
+		          if (increment_address && !decrement_address)
+				    begin
+				        state <= INCREMENT_SIG_ON_STATE;
+				    end
+				    else if (decrement_address && !increment_address)
+				    begin
+				        state <= DECREMENT_SIG_ON_STATE;
+				    end
+				INCREMENT_SIG_ON_STATE:
+				INCREMENT_SIG_OFF_STATE:
+				DECREMENT_SIG_ON_STATE:
+				DECREMENT_SIG_OFF_STATE:
+		  endcase
     end
 end
 
