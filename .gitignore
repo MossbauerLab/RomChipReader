@@ -1,0 +1,6 @@
+# Verilog quartus backups files
+*.bak
+# Quartus files
+db\*
+incremental_db\*
+output_files\*
