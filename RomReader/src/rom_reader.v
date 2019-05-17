@@ -68,26 +68,59 @@ begin
     else
     begin
         operation_code <= 4'b1100;           // universal solution for both chips (IP3604 and 3601)
-        case (state):
-		      INITIAL_CASE:
-		          if (increment_address && !decrement_address)
-				    begin
-				        state <= INCREMENT_SIG_ON_STATE;
-				    end
-				    else if (decrement_address && !increment_address)
-				    begin
-				        state <= DECREMENT_SIG_ON_STATE;
-				    end
-				INCREMENT_SIG_ON_STATE:
-				INCREMENT_SIG_OFF_STATE:
-				DECREMENT_SIG_ON_STATE:
-				DECREMENT_SIG_OFF_STATE:
-		  endcase
+        case (state)
+            INITIAL_STATE:
+            begin
+                if (increment_address && !decrement_address)
+                begin
+                    state <= INCREMENT_SIG_ON_STATE;
+                end
+                else if (decrement_address && !increment_address)
+                begin
+                    state <= DECREMENT_SIG_ON_STATE;
+                end
+            end
+            INCREMENT_SIG_ON_STATE:
+            begin
+                if (!increment_address && !decrement_address)
+                    state <= INCREMENT_SIG_OFF_STATE;
+                else if (decrement_address)
+                begin
+                    state <= INITIAL_STATE;
+                end
+            end
+            INCREMENT_SIG_OFF_STATE:
+            begin
+                state <= INITIAL_STATE;
+                address_counter <= address_counter + 1;
+                if (address_counter == MAX_ADDRESS + 1)
+                    address_counter <= 0;
+            end
+            DECREMENT_SIG_ON_STATE:
+            begin
+                if (!decrement_address && !increment_address)
+                begin
+                    state <= DECREMENT_SIG_OFF_STATE;
+                end
+                else if (increment_address)
+                begin
+                    state <= INITIAL_STATE;
+                end
+            end
+            DECREMENT_SIG_OFF_STATE:
+            begin
+                state <= INITIAL_STATE;
+                address_counter <= address_counter - 1;
+                if (address_counter == 0)
+                    address_counter <= MAX_ADDRESS;
+            end
+          endcase
+          data_line_value <= data_line_in;
     end
 end
 
 // increment_address and decrement_address are events from keys (key press) 
-always @(state or increment_address or decrement_address or address_counter or data_line_in)
+/*always @(state or increment_address or decrement_address or address_counter or data_line_in)
 begin
     if(!state)
     begin
@@ -98,24 +131,24 @@ begin
     begin
         if (increment_address)
         begin
-		      if(!decrement_address)
-				begin
+              if(!decrement_address)
+                begin
                 address_counter = address_counter + 1;
                 if (address_counter == MAX_ADDRESS + 1)
                     address_counter = 0;
-				end
+                end
         end
         if (decrement_address)
         begin
-		      if(!increment_address)
-				begin
-				    address_counter = address_counter - 1;
+              if(!increment_address)
+                begin
+                    address_counter = address_counter - 1;
                 if (address_counter == 0)
                     address_counter = MAX_ADDRESS;
-            end			
+            end            
         end
     end
     data_line_value = data_line_in;
-end
+end*/
 
 endmodule
