@@ -13,8 +13,7 @@
 //                 with peripheria of EazyFPGA board (TOP module)
 // Dependencies:   
 //
-// Revision: 
-// Revision 1.0
+// Revision: 1.0
 // Additional Comments: selected_chip (0 - IP3601, 1 - IP3604)
 //
 //////////////////////////////////////////////////////////////////////////////////
@@ -27,7 +26,9 @@ module rom_reader_programmer(
     input wire [7:0] chip_data_port,
     output wire [8:0] chip_address_port,
     output wire [3:0] chip_selection_port,
-    output wire [7:0] data_output_led_port
+    output wire [7:0] data_output_led_port,
+	 output wire [7:0] sseg_tube_port,
+	 output wire [3:0] sseg_selected_digit
     // todo: add 7seg port
 );
 
@@ -63,5 +64,9 @@ rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8))
                   .operation(ip3601_selection_port),
                   .address_line(ip3601_address_port),
                   .data_line(ip3601_output_led_port));
-
+// memory address					
+address_display ssegment_tube(.address_line(chip_address_port), 
+                              .clk(clk), .reset(reset), 
+										.sseg_indicator(sseg_tube_port), .digits(sseg_selected_digit));
+// todo: add data display to LED port
 endmodule

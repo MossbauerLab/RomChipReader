@@ -20,8 +20,7 @@
 //                 operation[2] - V3, operation[3] - V4.
 // Dependencies:   
 //
-// Revision: 
-// Revision 1.0
+// Revision: 1.0
 // Additional Comments: reset_n shoul be pulsed like --___----------
 //
 //////////////////////////////////////////////////////////////////////////////////

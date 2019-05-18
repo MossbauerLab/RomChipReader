@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company:        MossbauerLab
+// Engineer:       Ushakov M.V. (EvilLord666)
 // 
 // Create Date:    02:42:53 03/30/2019 
 // Design Name: 
@@ -13,8 +13,7 @@
 //
 // Dependencies: 
 //
-// Revision: 
-// Revision 0.01 - File Created
+// Revision: 1.0
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +22,7 @@ module address_display(
     input wire clk,
     input wire reset,
     output reg [7:0] sseg_indicator,
-    output reg [3:0]digits
+    output reg [3:0] digits
     );
 
     reg [3:0] counter;
@@ -46,14 +45,38 @@ module address_display(
 		  begin
 		  end
 	 end
-
-function automatic [7:0] get_digit_value;
-    input wire [1:0] digit;
-	 input wire [8:0] address_line;
-    case (digit):
-	     //2'b00
-		    //get_digit_value = address_line
-	 endcase
+	 
+function [11:0] encode_to_bcd;
+    input wire [8:0] binary_code;
+	 reg [3:0] hundreds;
+	 reg [3:0] tens;
+	 reg [3:0] ones;
+	 integer i;
+	 hundreds = binary_code / 100;
+	 tens = (binary_code - (hundreds & 100)) / 10;
+	 ones = binary_code - (hundreds & 100) - (tens & 10);
+	 for(i = 8; i >= 0; i = i -1)
+	 begin
+	     if (hundreds >= 5)
+	         hundreds = hundreds + 3;
+	     if (tens >= 5)
+	         tens = tens + 3;
+	     if (ones >= 5)
+	         ones = ones + 3;
+	     hundreds = hundreds << 1;
+	     hundreds[0] = tens[3];
+	     tens = tens << 1;
+	     tens[0] = ones[3];
+	 end
+	 encode_to_bcd[3:0] = ones[3:0];
+	 encode_to_bcd[7:4] = tens[3:0];
+	 encode_to_bcd[11:8] = hundreds[3:0];
 endfunction
+
+function [7:0] encode_to_sseg
+input [3:0] bcd
+    return 0;
+endfunction
+
 
 endmodule
