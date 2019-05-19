@@ -66,7 +66,6 @@ rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8))
                   .data_line(ip3601_output_led_port));
 // memory address					
 address_display ssegment_tube(.address_line(chip_address_port), 
-                              .clk(clk), .reset(reset), 
+                              .clk(clk), .reset(reset_button), 
 										.sseg_indicator(sseg_tube_port), .digits(sseg_selected_digit));
-// todo: add data display to LED port
 endmodule
