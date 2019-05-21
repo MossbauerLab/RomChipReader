@@ -54,7 +54,8 @@ module address_display(
                     sseg_value <= encode_to_sseg(tubes_bcd_values[11:8]);
                 default:
                     sseg_value <= 0;
-                endcase             
+                endcase  
+                sseg_indicator <= sseg_value;					 
             end
             if (digits == 0)
                 digits <= 1;
