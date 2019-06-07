@@ -16,17 +16,19 @@
 // Revision: 1.0
 // Additional Comments: selected_chip (0 - IP3601, 1 - IP3604), output for 8-bit LED Port mith manual move by memory address
 //                      via press buttons for increment and decrement
-// Peripheria usage:
-//                   S1 Button - Address decrement
-//                   S2 Button - Address increment
-//                   SW1 - Chip mode switch (IP3601, IP3604)
-//                   LED1 - IP3601 is used
-//                   LED2 - IP3604
+// Peripheria usage (In RZ-EasyFPGA A2.1 Board):
+//                   Clock (23)
+//                   S1 Button - Address decrement (88)
+//                   S2 Button - Address increment (89)
+//                   Reset Button - RESET (25)
+//                   SW4 - Chip mode switch (IP3601, IP3604) - (91)
+//                   LED1 - IP3601 (86)
+//                   LED2 - IP3604 (87)
 //                   7SEG TUBE - Address display
-// GPIO USAGE:       Address line  - 110 (LSB, 0 bit), 112, 114, 119, 121, 125, 127, 133, 136 (MSB, 8bit)
+// GPIO USAGE:       Address line  - 110 (LSB, 0 bit), 112, 114, 119, 66, 68, 70, 72, 74 (MSB, 8bit)
 //                   IP3604 select - 138 (LSB), 142, 144, 2 (MSB)
-//                   IP3601 select - 11 (LSB)
-//                   Data line input - 
+//                   IP3601 select - 11 (LSB), 80 (MSB)
+//                   Data line from IP3601/IP3604 - 64(LSB), 59, 55, 53, 51, 49, 44, 42 (MSB)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module rom_reader_programmer(
     input wire selected_chip,
