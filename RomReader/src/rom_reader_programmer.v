@@ -24,11 +24,13 @@
 //                   SW4 - Chip mode switch (IP3601, IP3604) - (91)
 //                   LED1 - IP3601 (86)
 //                   LED2 - IP3604 (87)
-//                   7SEG TUBE - Address display
+//                   7SEG TUBE - Address display Digits selection - 133 (LSB), 135, 136, 137 (MSB), 
+//                             - digit value  128 (LSB), 121, 125, 129, 132, 126, 124, 127 (MSB)
 // GPIO USAGE:       Address line  - 110 (LSB, 0 bit), 112, 114, 119, 66, 68, 70, 72, 74 (MSB, 8bit)
 //                   IP3604 select - 138 (LSB), 142, 144, 2 (MSB)
 //                   IP3601 select - 11 (LSB), 80 (MSB)
 //                   Data line from IP3601/IP3604 - 64(LSB), 59, 55, 53, 51, 49, 44, 42 (MSB)
+//                   Data output line 141 (LSB), 143, 1, 3, 10, 7, 77, 76
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module rom_reader_programmer(
     input wire chip_selection_button,
@@ -38,7 +40,8 @@ module rom_reader_programmer(
     input wire clk,                                   // clock line from board
     input wire [7:0] chip_data_port,
     output wire [8:0] chip_address_port,
-    output wire [3:0] chip_selection_port,
+    output wire [3:0] ip3604_selection_port,
+	 output wire [1:0] ip3601_selection_port,
     output wire [7:0] data_output_port,
 	 output wire [7:0] sseg_tube_port,
 	 output wire [3:0] sseg_selected_digit,
@@ -49,15 +52,12 @@ module rom_reader_programmer(
 // todo: add localparams
 
 wire [7:0] ip3601_address_port;
-wire [3:0] ip3601_selection_port;
 wire [3:0] ip3601_output_port;
 
 wire [8:0] ip3604_address_port;
-wire [3:0] ip3604_selection_port;
 wire [7:0] ip3604_output_port;
 
 assign chip_address_port = chip_selection_button == 1 ? ip3604_address_port : ip3601_address_port;
-assign chip_selection_port = chip_selection_button == 1 ? ip3604_selection_port : ip3601_selection_port;
 assign data_output_port = chip_selection_button == 1 ? ip3604_output_port : ip3601_output_port;
 
 assign ip3601_selection_led = chip_selection_button == 0 ? 1'b1: 1'b0;
