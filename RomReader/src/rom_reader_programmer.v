@@ -31,7 +31,7 @@
 //                   Data line from IP3601/IP3604 - 64(LSB), 59, 55, 53, 51, 49, 44, 42 (MSB)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 module rom_reader_programmer(
-    input wire selected_chip,
+    input wire chip_selection_button,
     input wire increment_address_button,              // button press means logical 1 on this line
     input wire decrement_address_button,              // button press means logical 1 on this line
     input wire reset_button,                          // todo:umv think about this button usage
@@ -39,27 +39,29 @@ module rom_reader_programmer(
     input wire [7:0] chip_data_port,
     output wire [8:0] chip_address_port,
     output wire [3:0] chip_selection_port,
-    output wire [7:0] data_output_led_port,
+    output wire [7:0] data_output_port,
 	 output wire [7:0] sseg_tube_port,
-	 output wire [3:0] sseg_selected_digit
+	 output wire [3:0] sseg_selected_digit,
+	 output wire ip3601_selection_led,
+	 output wire ip3604_selection_led
 );
 
 // todo: add localparams
 
 wire [7:0] ip3601_address_port;
 wire [3:0] ip3601_selection_port;
-wire [3:0] ip3601_output_led_port;
+wire [3:0] ip3601_output_port;
 
 wire [8:0] ip3604_address_port;
 wire [3:0] ip3604_selection_port;
-wire [7:0] ip3604_output_led_port;
+wire [7:0] ip3604_output_port;
 
-// todo: replace chip selection with always () on btn press ...
-// todo: umv: show chip selection using LED
-assign chip_address_port = selected_chip == 1 ? ip3604_address_port : ip3601_address_port;
-assign chip_selection_port = selected_chip == 1 ? ip3604_selection_port : ip3601_selection_port;
-assign data_output_led_port = selected_chip == 1 ? ip3604_output_led_port : ip3601_output_led_port;
+assign chip_address_port = chip_selection_button == 1 ? ip3604_address_port : ip3601_address_port;
+assign chip_selection_port = chip_selection_button == 1 ? ip3604_selection_port : ip3601_selection_port;
+assign data_output_port = chip_selection_button == 1 ? ip3604_output_port : ip3601_output_port;
 
+assign ip3601_selection_led = chip_selection_button == 0 ? 1'b1: 1'b0;
+assign ip3604_selection_led = chip_selection_button == 1 ? 1'b1: 1'b0;
 
 rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9)) 
     ip3604_reader(.clk(clk), .reset_n(reset_button), 
@@ -68,7 +70,7 @@ rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9))
                   .data_line_in(chip_data_port),
                   .operation(ip3604_selection_port),
                   .address_line(ip3604_address_port),
-                  .data_line(ip3604_output_led_port));
+                  .data_line(ip3604_output_port));
 
 rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8)) 
     ip3601_reader(.clk(clk), .reset_n(reset_button), 
@@ -77,9 +79,11 @@ rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8))
                   .data_line_in(chip_data_port[3:0]),
                   .operation(ip3601_selection_port),
                   .address_line(ip3601_address_port),
-                  .data_line(ip3601_output_led_port));
+                  .data_line(ip3601_output_port));
 // memory address					
 address_display ssegment_tube(.address_line(chip_address_port), 
                               .clk(clk), .reset(reset_button), 
 										.sseg_indicator(sseg_tube_port), .digits(sseg_selected_digit));
+										
+																				
 endmodule
