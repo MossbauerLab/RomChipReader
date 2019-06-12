@@ -84,17 +84,15 @@ begin
             begin
                 if (!increment_address && !decrement_address)
                     state <= INCREMENT_SIG_OFF_STATE;
-                else if (decrement_address)
-                begin
+                if (decrement_address)
                     state <= INITIAL_STATE;
-                end
             end
             INCREMENT_SIG_OFF_STATE:
             begin
                 state <= INITIAL_STATE;
-                address_counter <= address_counter + 1;
                 if (address_counter == MAX_ADDRESS + 1)
                     address_counter <= 0;
+                else address_counter <= address_counter + 1;
             end
             DECREMENT_SIG_ON_STATE:
             begin
@@ -102,7 +100,7 @@ begin
                 begin
                     state <= DECREMENT_SIG_OFF_STATE;
                 end
-                else if (increment_address)
+                if (increment_address)
                 begin
                     state <= INITIAL_STATE;
                 end
@@ -110,9 +108,9 @@ begin
             DECREMENT_SIG_OFF_STATE:
             begin
                 state <= INITIAL_STATE;
-                address_counter <= address_counter - 1;
                 if (address_counter == 0)
                     address_counter <= MAX_ADDRESS;
+                else address_counter <= address_counter - 1;
             end
           endcase
           data_line_value <= data_line_in;

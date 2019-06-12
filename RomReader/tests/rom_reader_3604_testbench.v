@@ -65,74 +65,74 @@ module rom_reader_3604_testbench;
         clk = 0;
         increment_address = 0;
         decrement_address = 0;
-        reset_n = 0;
+        reset_n = 1;
         data_line_in = 0;
         counter = 0;
 
         // Wait 200 ns for pulse reset
         #200;
-        reset_n = 1;
+        reset_n = 0;
         // Add stimulus here
         #200;
-        reset_n = 0;
+        reset_n = 1;
     end
     
     always
     begin
-        #100 clk <= ~clk;
+        #10 clk <= ~clk;
         counter <= counter + 1;
           
-        if(counter == 6)   // A + 1
+        if(counter == 60)   // A + 1
         begin
             data_line_in <= A0;
             increment_address <= 1;
         end
-        if(counter == 7)
+        if(counter == 70)
         begin
             increment_address <= 0;
         end
-        if(counter == 10)  // A + 1
+        if(counter == 100)  // A + 1
         begin
             data_line_in <= A1;
             increment_address <= 1;
         end
-        if(counter == 11)
+        if(counter == 110)
         begin
             increment_address <= 0;
         end
-          if(counter == 15)   // A - 1
+          if(counter == 150)   // A - 1
         begin
             data_line_in <= A0;
             decrement_address <= 1;
         end
-        if(counter == 16)
+        if(counter == 160)
         begin
             decrement_address <= 0;
         end
-          if(counter == 20)  // A + 1
+          if(counter == 200)  // A + 1
         begin
             data_line_in <= A1;
             increment_address <= 1;
         end
-        if(counter == 21)
+        if(counter == 210)
         begin
             increment_address <= 0;
         end
-        if(counter == 25)
+        if(counter == 250)
         begin
             data_line_in <= A2;
             increment_address <= 1;
         end
-        if(counter == 26)
+        if(counter == 260)
         begin
             increment_address <= 0;
         end
-        if(counter == 30)
+        if(counter == 300)
         begin
             data_line_in <= A3;
             increment_address <= 1;
         end
-        if(counter == 31)
+        if(counter == 310)
         begin
             counter <= 0;
             data_line_in <= 0;
