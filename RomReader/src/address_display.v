@@ -31,7 +31,7 @@ module address_display(
     
     always @(posedge clk)
     begin
-        if (reset)
+        if (~reset)
         begin
             counter <= 0;
             digits <= 1;
@@ -90,20 +90,20 @@ function [11:0] encode_to_bcd;
     encode_to_bcd[11:8] = hundreds[3:0];
 endfunction
 
-function [6:0] encode_to_sseg;
+function [7:0] encode_to_sseg;
 input [3:0] bcd;
     case (bcd)
-    4'b0000: encode_to_sseg = 7'b1111110;
-    4'b0001: encode_to_sseg = 7'b0110000;
-    4'b0010: encode_to_sseg = 7'b1101101;
-    4'b0011: encode_to_sseg = 7'b1111001;
-    4'b0100: encode_to_sseg = 7'b0110011;
-    4'b0101: encode_to_sseg = 7'b1011011;
-    4'b0110: encode_to_sseg = 7'b1011111;
-    4'b0111: encode_to_sseg = 7'b1110000;
-    4'b1000: encode_to_sseg = 7'b1111111;
-    4'b1001: encode_to_sseg = 7'b1111011;
-    default: encode_to_sseg = 7'b1111110;
+    4'b0000: encode_to_sseg = 8'hc0; //7'b1111110;
+    4'b0001: encode_to_sseg = 8'hf9; //7'b0110000;
+    4'b0010: encode_to_sseg = 8'ha4; //7'b1101101;
+    4'b0011: encode_to_sseg = 8'hb0; //7'b1111001;
+    4'b0100: encode_to_sseg = 8'h99; //7'b0110011;
+    4'b0101: encode_to_sseg = 8'h92; //7'b1011011;
+    4'b0110: encode_to_sseg = 8'h82; //7'b1011111;
+    4'b0111: encode_to_sseg = 8'hf8; //7'b1110000;
+    4'b1000: encode_to_sseg = 8'h80; //7'b1111111;
+    4'b1001: encode_to_sseg = 8'h90; //7'b1111011;
+    default: encode_to_sseg = 8'hc0; //7'b1111110;
     endcase
 endfunction
 

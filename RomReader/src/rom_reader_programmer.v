@@ -57,14 +57,21 @@ wire [3:0] ip3601_output_port;
 wire [8:0] ip3604_address_port;
 wire [7:0] ip3604_output_port;
 
+wire ip3604_reset;
+wire ip3601_reset;
+
 assign chip_address_port = chip_selection_button == 1 ? ip3604_address_port : ip3601_address_port;
 assign data_output_port = chip_selection_button == 1 ? ip3604_output_port : ip3601_output_port;
 
 assign ip3601_selection_led = chip_selection_button == 0 ? 1'b1: 1'b0;
 assign ip3604_selection_led = chip_selection_button == 1 ? 1'b1: 1'b0;
 
+assign ip3604_reset = reset_button & ip3604_selection_led;
+assign ip3601_reset = reset_button & ip3601_selection_led;
+
+
 rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9)) 
-    ip3604_reader(.clk(clk), .reset_n(reset_button), 
+    ip3604_reader(.clk(clk), .reset_n(ip3604_reset), 
                   .increment_address(~increment_address_button),
                   .decrement_address(~decrement_address_button),
                   .data_line_in(chip_data_port),
@@ -73,7 +80,7 @@ rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9))
                   .data_line(ip3604_output_port));
 
 rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8)) 
-    ip3601_reader(.clk(clk), .reset_n(reset_button), 
+    ip3601_reader(.clk(clk), .reset_n(ip3601_reset), 
                   .increment_address(~increment_address_button),
                   .decrement_address(~decrement_address_button),
                   .data_line_in(chip_data_port[3:0]),
