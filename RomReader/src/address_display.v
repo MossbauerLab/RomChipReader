@@ -69,25 +69,27 @@ function [11:0] encode_to_bcd;
     reg [3:0] tens;
     reg [3:0] ones;
     integer i;
-    hundreds = binary_code / 100;
-    tens = (binary_code - (hundreds & 100)) / 10;
-    ones = binary_code - (hundreds & 100) - (tens & 10);
-    for(i = 8; i >= 0; i = i -1)
-    begin
-        if (hundreds >= 5)
-            hundreds = hundreds + 3;
-        if (tens >= 5)
-            tens = tens + 3;
-        if (ones >= 5)
-            ones = ones + 3;
-        hundreds = hundreds << 1;
-        hundreds[0] = tens[3];
-        tens = tens << 1;
-        tens[0] = ones[3];
-    end
-    encode_to_bcd[3:0] = ones[3:0];
-    encode_to_bcd[7:4] = tens[3:0];
-    encode_to_bcd[11:8] = hundreds[3:0];
+	 begin
+        hundreds = binary_code / 100;
+        tens = (binary_code - (hundreds & 100)) / 10;
+        ones = binary_code - (hundreds & 100) - (tens & 10);
+        for(i = 8; i >= 0; i = i -1)
+        begin
+            if (hundreds >= 5)
+                hundreds = hundreds + 3;
+            if (tens >= 5)
+                tens = tens + 3;
+            if (ones >= 5)
+                ones = ones + 3;
+            hundreds = hundreds << 1;
+            hundreds[0] = tens[3];
+            tens = tens << 1;
+            tens[0] = ones[3];
+        end
+        encode_to_bcd[3:0] = ones[3:0];
+        encode_to_bcd[7:4] = tens[3:0];
+        encode_to_bcd[11:8] = hundreds[3:0];
+	 end
 endfunction
 
 function [7:0] encode_to_sseg;
