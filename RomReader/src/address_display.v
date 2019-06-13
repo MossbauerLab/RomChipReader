@@ -33,18 +33,18 @@ module address_display(
     begin
         if (~reset)
         begin
-            counter <= 0;
+            //counter <= 0;
             digits <= 1;
             tubes_bcd_values <= 0;
             sseg_value <= 0;
-                sseg_indicator <= 0;
+            sseg_indicator <= 0;
         end
         else
         begin
-            counter <= counter + 1;
-            if (counter == 8)
-            begin
-                counter <= 0;
+            //counter <= counter + 1;
+            //if (counter == 8)
+            //begin
+                //counter <= 0;
                 digits <= digits << 1;
                 tubes_bcd_values <= encode_to_bcd(address_line);
                 case (digits)
@@ -58,7 +58,7 @@ module address_display(
                     sseg_value <= 0;
                 endcase
                 sseg_indicator <= sseg_value;	 
-            end
+            // end
             if (digits == 0)
                 digits <= 1;
         end
