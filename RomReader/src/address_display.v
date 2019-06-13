@@ -72,12 +72,10 @@ function [11:0] encode_to_bcd;
     integer i;
     begin
         $display("Encode to bcd value: %d", binary_code); 
-        hundreds = binary_code / 100;
-        $display("Encode to bcd, hundreds before bcd correction: %d", hundreds);
-        tens = (binary_code - (hundreds & 100)) / 10;
-        $display("Encode to bcd, tens before bcd correction: %d", tens);
-        ones = binary_code - (hundreds & 100) - (tens & 10);
-        $display("Encode to bcd, ones before bcd correction: %d", ones);
+        hundreds = 0;
+        tens = 0;
+        ones = 0;
+
         for(i = 8; i >= 0; i = i - 1)
         begin
             if (hundreds >= 5)
@@ -93,9 +91,9 @@ function [11:0] encode_to_bcd;
             ones = ones << 1;
             ones[0] = binary_code[i];
         end
-        $display("Encode to bcd, hundreds after bcd correction: %d", hundreds);
-        $display("Encode to bcd, tens after bcd correction: %d", tens);
-        $display("Encode to bcd, ones after bcd correction: %d", ones);
+        $display("Encode to bcd, hundreds : %d", hundreds);
+        $display("Encode to bcd, tens : %d", tens);
+        $display("Encode to bcd, ones : %d", ones);
         encode_to_bcd[3:0] = ones[3:0];
         encode_to_bcd[7:4] = tens[3:0];
         encode_to_bcd[11:8] = hundreds[3:0];
