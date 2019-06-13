@@ -33,18 +33,16 @@ module address_display(
     begin
         if (~reset)
         begin
-            //counter <= 0;
+            counter <= 0;
             digits <= 1;
             tubes_bcd_values <= 0;
             sseg_value <= 0;
-            sseg_indicator <= 0;
         end
         else
-        begin
-            //counter <= counter + 1;
-            //if (counter == 8)
-            //begin
-                //counter <= 0;
+            counter <= counter + 1;
+            if (counter == 8)
+            begin
+                counter <= 0;
                 digits <= digits << 1;
                 tubes_bcd_values <= encode_to_bcd(address_line);
                 case (digits)
@@ -56,27 +54,26 @@ module address_display(
                     sseg_value <= encode_to_sseg(tubes_bcd_values[11:8]);
                 default:
                     sseg_value <= 0;
-                endcase
-                sseg_indicator <= sseg_value;	 
-            // end
+                endcase  
+                sseg_indicator <= sseg_value;
+            end
             if (digits == 0)
                 digits <= 1;
+        begin
         end
     end
-
+    
 function [11:0] encode_to_bcd;
-    input reg [8:0] binary_code;
+    input wire [8:0] binary_code;
     reg [3:0] hundreds;
     reg [3:0] tens;
     reg [3:0] ones;
     integer i;
-    begin
-        $display("Encode to bcd value: %d", binary_code); 
-        hundreds = 0;
-        tens = 0;
-        ones = 0;
-
-        for(i = 8; i >= 0; i = i - 1)
+	 begin
+        hundreds = binary_code / 100;
+        tens = (binary_code - (hundreds & 100)) / 10;
+        ones = binary_code - (hundreds & 100) - (tens & 10);
+        for(i = 8; i >= 0; i = i -1)
         begin
             if (hundreds >= 5)
                 hundreds = hundreds + 3;
@@ -88,33 +85,29 @@ function [11:0] encode_to_bcd;
             hundreds[0] = tens[3];
             tens = tens << 1;
             tens[0] = ones[3];
-            ones = ones << 1;
-            ones[0] = binary_code[i];
         end
-        $display("Encode to bcd, hundreds : %d", hundreds);
-        $display("Encode to bcd, tens : %d", tens);
-        $display("Encode to bcd, ones : %d", ones);
         encode_to_bcd[3:0] = ones[3:0];
         encode_to_bcd[7:4] = tens[3:0];
         encode_to_bcd[11:8] = hundreds[3:0];
-    end
+	 end
 endfunction
 
 function [7:0] encode_to_sseg;
 input [3:0] bcd;
     case (bcd)
-    4'b0000: encode_to_sseg = 8'hc0; //7'b1111110;
-    4'b0001: encode_to_sseg = 8'hf9; //7'b0110000;
-    4'b0010: encode_to_sseg = 8'ha4; //7'b1101101;
-    4'b0011: encode_to_sseg = 8'hb0; //7'b1111001;
-    4'b0100: encode_to_sseg = 8'h99; //7'b0110011;
-    4'b0101: encode_to_sseg = 8'h92; //7'b1011011;
-    4'b0110: encode_to_sseg = 8'h82; //7'b1011111;
-    4'b0111: encode_to_sseg = 8'hf8; //7'b1110000;
-    4'b1000: encode_to_sseg = 8'h80; //7'b1111111;
-    4'b1001: encode_to_sseg = 8'h90; //7'b1111011;
-    default: encode_to_sseg = 8'hc0; //7'b1111110;
+    4'b0000: encode_to_sseg = 7'b1111110;
+    4'b0001: encode_to_sseg = 7'b0110000;
+    4'b0010: encode_to_sseg = 7'b1101101;
+    4'b0011: encode_to_sseg = 7'b1111001;
+    4'b0100: encode_to_sseg = 7'b0110011;
+    4'b0101: encode_to_sseg = 7'b1011011;
+    4'b0110: encode_to_sseg = 7'b1011111;
+    4'b0111: encode_to_sseg = 7'b1110000;
+    4'b1000: encode_to_sseg = 7'b1111111;
+    4'b1001: encode_to_sseg = 7'b1111011;
+    default: encode_to_sseg = 7'b1111110;
     endcase
 endfunction
+
 
 endmodule
