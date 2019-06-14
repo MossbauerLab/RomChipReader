@@ -37,7 +37,7 @@ module address_display(
             counter <= 0;
             digits <= 4'b1111;
             tubes_bcd_values <= 0;
-            sseg_value <= 0;
+            sseg_value <= 255;
 				digit_counter <= 0;
         end
         else
@@ -46,7 +46,6 @@ module address_display(
             begin
                 counter <= 0;
 					 digit_counter <= digit_counter + 1;
-                // digits <= digits << 1;
                 tubes_bcd_values <= encode_to_bcd(address_line);
                 case (digit_counter)
                 3'b000:
@@ -68,9 +67,10 @@ module address_display(
                     sseg_value <= 0;
                 endcase  
                 sseg_indicator <= sseg_value;
+					 if (digit_counter == 3'b010)
+				        digit_counter <= 0;
             end
-            if (digit_counter == 3'b010)
-				    digit_counter <= 0;
+            
         begin
         end
     end
