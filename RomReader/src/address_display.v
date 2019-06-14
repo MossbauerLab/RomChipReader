@@ -28,37 +28,49 @@ module address_display(
     reg [3:0] counter;
     reg [11:0] tubes_bcd_values;
     reg [6:0] sseg_value;
+	 reg [2:0] digit_counter;
     
     always @(posedge clk)
     begin
         if (~reset)
         begin
             counter <= 0;
-            digits <= 1;
+            digits <= 4'b1111;
             tubes_bcd_values <= 0;
             sseg_value <= 0;
+				digit_counter <= 0;
         end
         else
             counter <= counter + 1;
-            if (counter == 8)
+            if (counter == 4)
             begin
                 counter <= 0;
-                digits <= digits << 1;
+					 digit_counter <= digit_counter + 1;
+                // digits <= digits << 1;
                 tubes_bcd_values <= encode_to_bcd(address_line);
-                case (digits)
-                4'b0001:
+                case (digit_counter)
+                3'b000:
+					 begin
                     sseg_value <= encode_to_sseg(tubes_bcd_values[3:0]);
-                4'b0010:
+						  digits <= 4'b1110;
+					 end
+                3'b001:
+					 begin
                     sseg_value <= encode_to_sseg(tubes_bcd_values[7:4]);
-                4'b0100:
+						  digits <= 4'b1101;
+					 end
+                3'b010:
+					 begin
                     sseg_value <= encode_to_sseg(tubes_bcd_values[11:8]);
+						  digits <= 4'b1011;
+					 end
                 default:
                     sseg_value <= 0;
                 endcase  
                 sseg_indicator <= sseg_value;
             end
-            if (digits == 0)
-                digits <= 1;
+            if (digit_counter == 3'b010)
+				    digit_counter <= 0;
         begin
         end
     end
@@ -70,7 +82,7 @@ function [11:0] encode_to_bcd;
     reg [3:0] ones;
     integer i;
 	 begin
-        hhundreds = 0;
+        hundreds = 0;
         tens = 0;
         ones = 0;
         for(i = 8; i >= 0; i = i -1)
