@@ -100,17 +100,17 @@ endfunction
 function [7:0] encode_to_sseg;
 input [3:0] bcd;
     case (bcd)
-    4'b0000: encode_to_sseg = 7'b1111110;
-    4'b0001: encode_to_sseg = 7'b0110000;
-    4'b0010: encode_to_sseg = 7'b1101101;
-    4'b0011: encode_to_sseg = 7'b1111001;
-    4'b0100: encode_to_sseg = 7'b0110011;
-    4'b0101: encode_to_sseg = 7'b1011011;
-    4'b0110: encode_to_sseg = 7'b1011111;
-    4'b0111: encode_to_sseg = 7'b1110000;
-    4'b1000: encode_to_sseg = 7'b1111111;
-    4'b1001: encode_to_sseg = 7'b1111011;
-    default: encode_to_sseg = 7'b1111110;
+    4'b0000: encode_to_sseg = 8'b11000000; // 0
+    4'b0001: encode_to_sseg = 8'b11111001; // 1
+    4'b0010: encode_to_sseg = 8'b10100100; // 2
+    4'b0011: encode_to_sseg = 8'b10110000; // 3
+    4'b0100: encode_to_sseg = 8'b10011001; // 4
+    4'b0101: encode_to_sseg = 8'b10010010; // 5
+    4'b0110: encode_to_sseg = 8'b10000010; // 6
+    4'b0111: encode_to_sseg = 8'b11111000; // 7
+    4'b1000: encode_to_sseg = 8'b10000000; // 8
+    4'b1001: encode_to_sseg = 8'b10010000; // 9
+    default: encode_to_sseg = 8'b11000000; // 0
     endcase
 endfunction
 
