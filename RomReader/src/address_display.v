@@ -27,7 +27,6 @@ module address_display(
 
     reg [31:0] counter;
     reg [11:0] tubes_bcd_values;
-    reg [7:0] sseg_value;
 	 reg [2:0] digit_counter;
     
     always @(posedge clk)
@@ -37,43 +36,44 @@ module address_display(
             counter <= 0;
             digits <= 4'b1111;
             tubes_bcd_values <= 0;
-            sseg_value <= 255;
+            sseg_indicator <= 255;
 				digit_counter <= 0;
         end
         else
             counter <= counter + 1;
             if (counter == 4)
             begin
-                // counter <= 0;
-					 // digit_counter <= digit_counter + 1;
-                tubes_bcd_values <= encode_to_bcd(address_line);
+                tubes_bcd_values <= 12'b001101011001;
+					                     //encode_to_bcd(address_line);
                 case (digit_counter)
                 3'b000:
 					 begin
-                    sseg_value <= encode_to_sseg(tubes_bcd_values[3:0]);
-						  digits <= 4'b1110;
+                    sseg_indicator <= encode_to_sseg(tubes_bcd_values[11:8]);
+						  digits <= 4'b1011;
 					 end
                 3'b001:
 					 begin
-                    sseg_value <= encode_to_sseg(tubes_bcd_values[7:4]);
+                    sseg_indicator <= encode_to_sseg(tubes_bcd_values[7:4]);
 						  digits <= 4'b1101;
 					 end
                 3'b010:
-					 begin
-                    sseg_value <= encode_to_sseg(tubes_bcd_values[11:8]);
-						  digits <= 4'b1011;
+					 begin               
+						  sseg_indicator <= encode_to_sseg(tubes_bcd_values[3:0]);
+						  digits <= 4'b1110;
 					 end
                 default:
-                    sseg_value <= 0;
+					 begin
+                    sseg_indicator <= 0;
+						  digits <= 4'b1111;
+					 end
                 endcase  
-                sseg_indicator <= sseg_value;
             end
             if (counter == 100000)
 				begin
 				    counter <= 0;
 					 digit_counter <= digit_counter + 1;
 					 if (digit_counter == 3'b010)
-				        digit_counter <= 0;
+				        digit_counter <= 0;			  
 			   end
         begin
         end
