@@ -27,7 +27,7 @@ module address_display(
 
     reg [31:0] counter;
     reg [11:0] tubes_bcd_values;
-	 reg [2:0] digit_counter;
+    reg [2:0] digit_counter;
     
     always @(posedge clk)
     begin
@@ -37,42 +37,42 @@ module address_display(
             digits <= 4'b1111;
             tubes_bcd_values <= 0;
             sseg_indicator <= 255;
-				digit_counter <= 0;
+                digit_counter <= 0;
         end
         else
             counter <= counter + 1;
             if (counter == 4)
             begin
                 tubes_bcd_values <= //12'b001101011001; // 359
-					                     encode_to_bcd(address_line);
+                                    encode_to_bcd(address_line);
                 case (digit_counter)
-                3'b000:
-					 begin
-                    sseg_indicator <= encode_to_sseg(tubes_bcd_values[11:8]);
-						  digits <= 4'b1011;
-					 end
-                3'b001:
-					 begin
-                    sseg_indicator <= encode_to_sseg(tubes_bcd_values[7:4]);
-						  digits <= 4'b1101;
-					 end
-                3'b010:
-					 begin               
-						  sseg_indicator <= encode_to_sseg(tubes_bcd_values[3:0]);
-						  digits <= 4'b1110;
-					 end
-                default:
-					 begin
-					 end
+                    3'b000:
+                    begin
+                        sseg_indicator <= encode_to_sseg(tubes_bcd_values[11:8]);
+                        digits <= 4'b1011;
+                    end
+                    3'b001:
+                    begin
+                        sseg_indicator <= encode_to_sseg(tubes_bcd_values[7:4]);
+                        digits <= 4'b1101;
+                    end
+                    3'b010:
+                    begin
+                        sseg_indicator <= encode_to_sseg(tubes_bcd_values[3:0]);
+                        digits <= 4'b1110;
+                    end
+                    default:
+                    begin
+                    end
                 endcase  
             end
             if (counter == 100000)
-				begin
-				    counter <= 0;
-					 digit_counter <= digit_counter + 1;
-					 if (digit_counter == 3'b010)
-				        digit_counter <= 0;			  
-			   end
+            begin
+                counter <= 0;
+                digit_counter <= digit_counter + 1;
+                if (digit_counter == 3'b010)
+                    digit_counter <= 0;              
+            end
         begin
         end
     end
@@ -83,7 +83,7 @@ function [11:0] encode_to_bcd;
     reg [3:0] tens;
     reg [3:0] ones;
     integer i;
-	 begin
+     begin
         hundreds = 0;
         tens = 0;
         ones = 0;
@@ -108,7 +108,7 @@ function [11:0] encode_to_bcd;
         encode_to_bcd[3:0] = ones[3:0];
         encode_to_bcd[7:4] = tens[3:0];
         encode_to_bcd[11:8] = hundreds[3:0];
-	 end
+     end
 endfunction
 
 function [7:0] encode_to_sseg;
