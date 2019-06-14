@@ -43,8 +43,8 @@ module address_display(
             counter <= counter + 1;
             if (counter == 4)
             begin
-                tubes_bcd_values <= 12'b001101011001; // 359
-					                     //encode_to_bcd(address_line);
+                tubes_bcd_values <= //12'b001101011001; // 359
+					                     encode_to_bcd(address_line);
                 case (digit_counter)
                 3'b000:
 					 begin
@@ -63,8 +63,6 @@ module address_display(
 					 end
                 default:
 					 begin
-                    sseg_indicator <= 0;
-						  digits <= 4'b1111;
 					 end
                 endcase  
             end
