@@ -43,7 +43,7 @@ module address_display(
             counter <= counter + 1;
             if (counter == 4)
             begin
-                tubes_bcd_values <= 12'b001101011001;
+                tubes_bcd_values <= 12'b001101011001; // 359
 					                     //encode_to_bcd(address_line);
                 case (digit_counter)
                 3'b000:
