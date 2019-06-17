@@ -71,9 +71,9 @@ assign ip3604_selection_led = chip_selection_button == 1 ? 1'b1: 1'b0;
 assign ip3604_reset = reset_button & ip3604_selection_led;
 assign ip3601_reset = reset_button & ip3601_selection_led;
 
-debouncer #(.DEBOUNCE_VALUE(1000))
+debouncer #(.DEBOUNCE_VALUE(100000))
     inc_debouncer(.clk(clk), .reset(reset_button), .line(increment_address_button), .debounced_line(increment_debounced));
-debouncer #(.DEBOUNCE_VALUE(1000))
+debouncer #(.DEBOUNCE_VALUE(100000))
     dec_debouncer(.clk(clk), .reset(reset_button), .line(decrement_address_button), .debounced_line(decrement_debounced));
 
 rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9)) 
