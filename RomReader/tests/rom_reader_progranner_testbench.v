@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+`include "E:\PLD\RomChipReader\RomReader\src\rom_reader_programmer.v"
 ////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer:
@@ -43,7 +43,7 @@ module rom_reader_progranner_testbench;
 	wire ip3604_selection_led;
 
 	// Instantiate the Unit Under Test (UUT)
-	rom_reader_programmer programmer (
+	rom_reader_programmer uut (
 		.chip_selection_button(chip_selection_button), 
 		.increment_address_button(increment_address_button), 
 		.decrement_address_button(decrement_address_button), 
