@@ -45,7 +45,7 @@ reg [ADDRESS_WIDTH:0] address_counter;
 reg [DATA_WIDTH-1:0] data_line_value;
 (* keep = "true" *) reg [3:0] state;
 
-localparam reg[31:0] MAX_ADDRESS = 2^`IP3604_ADDR_WIDTH - 1;
+localparam reg[31:0] MAX_ADDRESS = 511;//2^`IP3604_ADDR_WIDTH - 1;
 localparam reg [3:0] INITIAL_STATE = 4'b0000;
 localparam reg [3:0] INCREMENT_SIG_ON_STATE = 4'b0001;
 localparam reg [3:0] INCREMENT_SIG_OFF_STATE = 4'b0010;
