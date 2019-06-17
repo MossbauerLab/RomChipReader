@@ -37,7 +37,7 @@ always @(posedge clk)
 begin
     if (~reset)
     begin
-        debounced_line <= 1; //line == 1 ? 1 : 0;
+        debounced_line <= line == 1 ? 1 : 0;
         debounce_counter <= 0;
     end
     else
