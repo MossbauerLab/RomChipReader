@@ -36,8 +36,8 @@ module address_display(
             counter <= 0;
             digits <= 4'b1111;
             tubes_bcd_values <= 0;
-            sseg_indicator <= 255;
-                digit_counter <= 0;
+            sseg_indicator <= 8'b11000000;
+            digit_counter <= 0;
         end
         else
             counter <= counter + 1;
@@ -127,6 +127,5 @@ input [3:0] bcd;
     default: encode_to_sseg = 8'b11000000; // 0
     endcase
 endfunction
-
 
 endmodule
