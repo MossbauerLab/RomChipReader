@@ -22,6 +22,12 @@
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="RomReader.xise"/>
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/par.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/trce.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
@@ -32,7 +38,44 @@
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="rom_reader_3604_testbench_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="rom_reader_3604_testbench_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rom_reader_3604_testbench_stx_beh.prj"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="rom_reader_programmer.bld"/>
+    <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="rom_reader_programmer.cmd_log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="rom_reader_programmer.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="rom_reader_programmer.ncd" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="rom_reader_programmer.ngc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="rom_reader_programmer.ngd"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="rom_reader_programmer.ngr"/>
+    <file xil_pn:fileType="FILE_PAD_MISC" xil_pn:name="rom_reader_programmer.pad"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAR_REPORT" xil_pn:name="rom_reader_programmer.par" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PCF" xil_pn:name="rom_reader_programmer.pcf" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="rom_reader_programmer.prj"/>
+    <file xil_pn:fileType="FILE_TRCE_MISC" xil_pn:name="rom_reader_programmer.ptwx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="rom_reader_programmer.stx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="rom_reader_programmer.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="rom_reader_programmer.twr" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_XML_REPORT" xil_pn:name="rom_reader_programmer.twx" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_UNROUTES" xil_pn:name="rom_reader_programmer.unroutes" xil_pn:subbranch="Par"/>
+    <file xil_pn:fileType="FILE_XPI" xil_pn:name="rom_reader_programmer.xpi"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="rom_reader_programmer.xst"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="rom_reader_programmer_envsettings.html"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="rom_reader_programmer_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="rom_reader_programmer_map.map" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="rom_reader_programmer_map.mrp" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="rom_reader_programmer_map.ncd" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGM" xil_pn:name="rom_reader_programmer_map.ngm" xil_pn:subbranch="Map"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="rom_reader_programmer_map.xrpt"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="rom_reader_programmer_ngdbuild.xrpt"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_EXCEL_REPORT" xil_pn:name="rom_reader_programmer_pad.csv" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_TXT_REPORT" xil_pn:name="rom_reader_programmer_pad.txt" xil_pn:subbranch="Par"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="rom_reader_programmer_par.xrpt"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="rom_reader_programmer_summary.html"/>
+    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="rom_reader_programmer_summary.xml"/>
+    <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="rom_reader_programmer_usage.xml"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="rom_reader_programmer_xst.xrpt"/>
+    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
@@ -40,15 +83,13 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1551354756" xil_pn:in_ck="6636995015956621690" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1551354756">
+    <transform xil_pn:end_ts="1560364926" xil_pn:in_ck="4379455879102566576" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1560364926">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputAdded"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="src/address_display.v"/>
+      <outfile xil_pn:name="src/rom_reader.v"/>
+      <outfile xil_pn:name="tests/rom_reader_3601_testbench.v"/>
+      <outfile xil_pn:name="tests/rom_reader_3604_testbench.v"/>
     </transform>
     <transform xil_pn:end_ts="1551354759" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="7464649683791967490" xil_pn:start_ts="1551354759">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -58,39 +99,125 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1551186419" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-2973996366553970082" xil_pn:start_ts="1551186419">
+    <transform xil_pn:end_ts="1560364971" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="-3234201145842860935" xil_pn:start_ts="1560364971">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
     </transform>
-    <transform xil_pn:end_ts="1551354759" xil_pn:in_ck="6636995015956621690" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1551354759">
+    <transform xil_pn:end_ts="1560364971" xil_pn:in_ck="4379455879102566576" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1560364971">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="src/address_display.v"/>
+      <outfile xil_pn:name="src/rom_reader.v"/>
+      <outfile xil_pn:name="tests/rom_reader_3601_testbench.v"/>
+      <outfile xil_pn:name="tests/rom_reader_3604_testbench.v"/>
     </transform>
-    <transform xil_pn:end_ts="1551354761" xil_pn:in_ck="6636995015956621690" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="1183339558170800195" xil_pn:start_ts="1551354759">
+    <transform xil_pn:end_ts="1560364975" xil_pn:in_ck="4379455879102566576" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="1183339558170800195" xil_pn:start_ts="1560364971">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="fuse.log"/>
+      <outfile xil_pn:name="isim"/>
+      <outfile xil_pn:name="rom_reader_3604_testbench_beh.prj"/>
+      <outfile xil_pn:name="rom_reader_3604_testbench_isim_beh.exe"/>
+      <outfile xil_pn:name="xilinxsim.ini"/>
+    </transform>
+    <transform xil_pn:end_ts="1560364975" xil_pn:in_ck="125835353412906714" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5315827453007181393" xil_pn:start_ts="1560364975">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="isim.cmd"/>
+      <outfile xil_pn:name="rom_reader_3604_testbench_isim_beh.wdb"/>
+    </transform>
+    <transform xil_pn:end_ts="1560360863" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1560360863">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1560360863" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-4097426668945371696" xil_pn:start_ts="1560360863">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1560360863" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-3234201145842860935" xil_pn:start_ts="1560360863">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1560360863" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1560360863">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1560360863" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-7921771105410014446" xil_pn:start_ts="1560360863">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1560360863" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="250970745411629038" xil_pn:start_ts="1560360863">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1560360863" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-4479896672168839037" xil_pn:start_ts="1560360863">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1560364486" xil_pn:in_ck="-7071845452236081177" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="4207842718355733480" xil_pn:start_ts="1560364454">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
       <status xil_pn:value="OutputChanged"/>
-      <status xil_pn:value="OutputRemoved"/>
+      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
+      <outfile xil_pn:name="rom_reader_programmer.lso"/>
+      <outfile xil_pn:name="rom_reader_programmer.ngc"/>
+      <outfile xil_pn:name="rom_reader_programmer.ngr"/>
+      <outfile xil_pn:name="rom_reader_programmer.prj"/>
+      <outfile xil_pn:name="rom_reader_programmer.stx"/>
+      <outfile xil_pn:name="rom_reader_programmer.syr"/>
+      <outfile xil_pn:name="rom_reader_programmer.xst"/>
+      <outfile xil_pn:name="rom_reader_programmer_xst.xrpt"/>
+      <outfile xil_pn:name="webtalk_pn.xml"/>
+      <outfile xil_pn:name="xst"/>
     </transform>
-    <transform xil_pn:end_ts="1551354761" xil_pn:in_ck="-559008348354665903" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5315827453007181393" xil_pn:start_ts="1551354761">
+    <transform xil_pn:end_ts="1560360885" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="4186146314471306429" xil_pn:start_ts="1560360884">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputRemoved"/>
-      <status xil_pn:value="OutputChanged"/>
-      <status xil_pn:value="OutputRemoved"/>
+    </transform>
+    <transform xil_pn:end_ts="1560364495" xil_pn:in_ck="-215255578207233919" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="5702173913891969722" xil_pn:start_ts="1560364486">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_ngo"/>
+      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+      <outfile xil_pn:name="rom_reader_programmer.bld"/>
+      <outfile xil_pn:name="rom_reader_programmer.ngd"/>
+      <outfile xil_pn:name="rom_reader_programmer_ngdbuild.xrpt"/>
+    </transform>
+    <transform xil_pn:end_ts="1560364529" xil_pn:in_ck="-215255578207233918" xil_pn:name="TRANEXT_map_spartan6" xil_pn:prop_ck="4756088955047530681" xil_pn:start_ts="1560364495">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
+      <outfile xil_pn:name="rom_reader_programmer.pcf"/>
+      <outfile xil_pn:name="rom_reader_programmer_map.map"/>
+      <outfile xil_pn:name="rom_reader_programmer_map.mrp"/>
+      <outfile xil_pn:name="rom_reader_programmer_map.ncd"/>
+      <outfile xil_pn:name="rom_reader_programmer_map.ngm"/>
+      <outfile xil_pn:name="rom_reader_programmer_map.xrpt"/>
+      <outfile xil_pn:name="rom_reader_programmer_summary.xml"/>
+      <outfile xil_pn:name="rom_reader_programmer_usage.xml"/>
+    </transform>
+    <transform xil_pn:end_ts="1560364548" xil_pn:in_ck="8380675052222978203" xil_pn:name="TRANEXT_par_spartan6" xil_pn:prop_ck="93661965788626211" xil_pn:start_ts="1560364529">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
+      <outfile xil_pn:name="rom_reader_programmer.ncd"/>
+      <outfile xil_pn:name="rom_reader_programmer.pad"/>
+      <outfile xil_pn:name="rom_reader_programmer.par"/>
+      <outfile xil_pn:name="rom_reader_programmer.ptwx"/>
+      <outfile xil_pn:name="rom_reader_programmer.unroutes"/>
+      <outfile xil_pn:name="rom_reader_programmer.xpi"/>
+      <outfile xil_pn:name="rom_reader_programmer_pad.csv"/>
+      <outfile xil_pn:name="rom_reader_programmer_pad.txt"/>
+      <outfile xil_pn:name="rom_reader_programmer_par.xrpt"/>
+    </transform>
+    <transform xil_pn:end_ts="1560364548" xil_pn:in_ck="-215255578207234050" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416185" xil_pn:start_ts="1560364540">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
+      <outfile xil_pn:name="rom_reader_programmer.twr"/>
+      <outfile xil_pn:name="rom_reader_programmer.twx"/>
     </transform>
   </transforms>
 

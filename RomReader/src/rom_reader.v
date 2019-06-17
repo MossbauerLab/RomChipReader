@@ -45,7 +45,7 @@ reg [ADDRESS_WIDTH:0] address_counter;
 reg [DATA_WIDTH-1:0] data_line_value;
 (* keep = "true" *) reg [3:0] state;
 
-localparam reg[31:0] MAX_ADDRESS = 2^`IP3604_ADDR_WIDTH - 1;
+localparam reg [31:0] MAX_ADDRESS = 511;//2^`IP3604_ADDR_WIDTH - 1;
 localparam reg [3:0] INITIAL_STATE = 4'b0000;
 localparam reg [3:0] INCREMENT_SIG_ON_STATE = 4'b0001;
 localparam reg [3:0] INCREMENT_SIG_OFF_STATE = 4'b0010;
@@ -59,11 +59,12 @@ assign data_line = data_line_value;
 
 always @(posedge clk)
 begin
-    if (reset_n)
+    if (~reset_n)
     begin
         operation_code <= 4'b0000;           // universal solution for both chips (IP3604 and 3601)
         state <= INITIAL_STATE;
         address_counter <= 0;
+        data_line_value <= 0;
     end
     else
     begin
@@ -84,17 +85,15 @@ begin
             begin
                 if (!increment_address && !decrement_address)
                     state <= INCREMENT_SIG_OFF_STATE;
-                else if (decrement_address)
-                begin
+                if (decrement_address)
                     state <= INITIAL_STATE;
-                end
             end
             INCREMENT_SIG_OFF_STATE:
             begin
                 state <= INITIAL_STATE;
-                address_counter <= address_counter + 1;
                 if (address_counter == MAX_ADDRESS + 1)
                     address_counter <= 0;
+                else address_counter <= address_counter + 1;
             end
             DECREMENT_SIG_ON_STATE:
             begin
@@ -102,7 +101,7 @@ begin
                 begin
                     state <= DECREMENT_SIG_OFF_STATE;
                 end
-                else if (increment_address)
+                if (increment_address)
                 begin
                     state <= INITIAL_STATE;
                 end
@@ -110,9 +109,9 @@ begin
             DECREMENT_SIG_OFF_STATE:
             begin
                 state <= INITIAL_STATE;
-                address_counter <= address_counter - 1;
                 if (address_counter == 0)
                     address_counter <= MAX_ADDRESS;
+                else address_counter <= address_counter - 1;
             end
           endcase
           data_line_value <= data_line_in;
