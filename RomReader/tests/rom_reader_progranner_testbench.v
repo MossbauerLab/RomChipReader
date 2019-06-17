@@ -43,7 +43,7 @@ module rom_reader_progranner_testbench;
 	wire ip3604_selection_led;
 
 	// Instantiate the Unit Under Test (UUT)
-	rom_reader_programmer uut (
+	rom_reader_programmer programmer (
 		.chip_selection_button(chip_selection_button), 
 		.increment_address_button(increment_address_button), 
 		.decrement_address_button(decrement_address_button), 
@@ -59,22 +59,35 @@ module rom_reader_progranner_testbench;
 		.ip3601_selection_led(ip3601_selection_led), 
 		.ip3604_selection_led(ip3604_selection_led)
 	);
+	
+	reg [31:0] counter;
 
 	initial begin
 		// Initialize Inputs
 		chip_selection_button = 0;
-		increment_address_button = 0;
-		decrement_address_button = 0;
-		reset_button = 0;
+		increment_address_button = 1;
+		decrement_address_button = 1;
+		reset_button = 1;
 		clk = 0;
 		chip_data_port = 0;
-
+      counter = 0;
 		// Wait 100 ns for global reset to finish
-		#100;
-        
+		#200;
+      reset_button = 0; 
 		// Add stimulus here
-
+		#200;
+      reset_button = 1;
 	end
-      
+	
+	always
+	begin
+	#10 clk <= ~clk;
+   counter <= counter + 1;
+	if (counter == 1000)
+	    increment_address_button <= 0;
+	if (counter == 4000)
+       increment_address_button <= 1;
+	end
+   
 endmodule
 

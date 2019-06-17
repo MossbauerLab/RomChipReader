@@ -78,7 +78,7 @@ module address_display(
     end
     
 function [11:0] encode_to_bcd;
-    input wire [8:0] binary_code;
+    input reg [8:0] binary_code;
     reg [3:0] hundreds;
     reg [3:0] tens;
     reg [3:0] ones;
