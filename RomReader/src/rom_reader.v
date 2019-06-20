@@ -27,7 +27,8 @@
 module rom_reader #
 (
      DATA_WIDTH = `IP3604_DATA_WIDTH,
-     ADDRESS_WIDTH = `IP3604_ADDR_WIDTH
+     ADDRESS_WIDTH = `IP3604_ADDR_WIDTH,
+	  CHIP = `IP3604
 )
 (
      input wire clk,                                     // clock, we should select source in top level : auto or manual via pushing a button
@@ -68,7 +69,7 @@ begin
     end
     else
     begin
-        operation_code <= 4'b0011;           // universal solution for both chips (IP3604 and 3601)
+        operation_code <= CHIP == `IP3604 ? 4'b0011 : 4'b0000;
         case (state)
             INITIAL_STATE:
             begin

@@ -47,7 +47,8 @@ module rom_reader_3601_testbench;
     rom_reader #
     (
         .DATA_WIDTH(4),
-        .ADDRESS_WIDTH(8)
+        .ADDRESS_WIDTH(8),
+        .CHIP(1)
     )uut 
     (
         .clk(clk), 

@@ -76,7 +76,7 @@ debouncer #(.DEBOUNCE_VALUE(100000))
 debouncer #(.DEBOUNCE_VALUE(100000))
     dec_debouncer(.clk(clk), .reset(reset_button), .line(decrement_address_button), .debounced_line(decrement_debounced));
 
-rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9)) 
+rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9), .CHIP(1)) 
     ip3604_reader(.clk(clk), .reset_n(ip3604_reset), 
                   .increment_address(~increment_debounced),
                   .decrement_address(~decrement_debounced),
@@ -85,7 +85,7 @@ rom_reader #(.DATA_WIDTH(8), .ADDRESS_WIDTH(9))
                   .address_line(ip3604_address_port),
                   .data_line(ip3604_output_port));
 
-rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8)) 
+rom_reader #(.DATA_WIDTH(4), .ADDRESS_WIDTH(8), .CHIP(2)) 
     ip3601_reader(.clk(clk), .reset_n(ip3601_reset), 
                   .increment_address(~increment_debounced),
                   .decrement_address(~decrement_debounced),
