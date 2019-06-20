@@ -68,7 +68,7 @@ begin
     end
     else
     begin
-        operation_code <= 4'b1100;           // universal solution for both chips (IP3604 and 3601)
+        operation_code <= 4'b0011;           // universal solution for both chips (IP3604 and 3601)
         case (state)
             INITIAL_STATE:
             begin
