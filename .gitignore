@@ -4,3 +4,10 @@
 db\*
 incremental_db\*
 output_files\*
+RomReader/db/
+
+RomReader/incremental_db/
+
+RomReader/output_files/
+
+RomReader/simulation/
