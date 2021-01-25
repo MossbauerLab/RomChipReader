@@ -11,3 +11,5 @@ RomReader/incremental_db/
 RomReader/output_files/
 
 RomReader/simulation/
+
+RomReader/RomReader.qws
